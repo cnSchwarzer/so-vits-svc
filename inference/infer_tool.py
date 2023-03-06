@@ -140,7 +140,10 @@ def fill_a_to_b(a, b):
 def mkdir(paths: list):
     for path in paths:
         if not os.path.exists(path):
-            os.mkdir(path)
+            try:
+                os.mkdir(path)
+            except e:
+                print(e)
 
 
 class Svc(object):
