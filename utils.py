@@ -179,6 +179,12 @@ def plot_spectrogram_to_numpy(spectrogram):
   plt.close()
   return data
 
+def clean_remove(path):
+  f = open(path, 'w')
+  f.write('')
+  f.close()
+  os.remove(x)
+
 def clean_checkpoints(path_to_models='logs/48k/', n_ckpts_to_keep=2, sort_by_time=True):
   """Freeing up space by deleting saved ckpts
 
@@ -196,7 +202,7 @@ def clean_checkpoints(path_to_models='logs/48k/', n_ckpts_to_keep=2, sort_by_tim
   to_del = [os.path.join(path_to_models, fn) for fn in
             (x_sorted('G')[:-n_ckpts_to_keep] + x_sorted('D')[:-n_ckpts_to_keep])]
   del_info = lambda fn: logger.info(f".. Free up space by deleting ckpt {fn}")
-  del_routine = lambda x: [os.remove(x), del_info(x)]
+  del_routine = lambda x: [clean_remove(x), del_info(x)]
   rs = [del_routine(fn) for fn in to_del]
 
 def plot_alignment_to_numpy(alignment, info=None):
