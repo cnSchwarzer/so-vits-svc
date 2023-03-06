@@ -142,7 +142,7 @@ def mkdir(paths: list):
         if not os.path.exists(path):
             try:
                 os.mkdir(path)
-            except e:
+            except Exception as e:
                 print(e)
 
 
