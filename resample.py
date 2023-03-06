@@ -32,17 +32,21 @@ def process(item):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--sr2", type=int, default=32000, help="sampling rate")
-    parser.add_argument("--in_dir", type=str, default="./dataset_raw", help="path to source dir")
-    parser.add_argument("--out_dir2", type=str, default="./dataset/32k", help="path to target dir")
-    args = parser.parse_args()
-    processs = cpu_count()-2 if cpu_count() >4 else 1
-    pool = Pool(processes=processs)
+    try: 
+        print('resampling')
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--sr2", type=int, default=32000, help="sampling rate")
+        parser.add_argument("--in_dir", type=str, default="./dataset_raw", help="path to source dir")
+        parser.add_argument("--out_dir2", type=str, default="./dataset/32k", help="path to target dir")
+        args = parser.parse_args()
+        processs = cpu_count()-2 if cpu_count() >4 else 1
+        pool = Pool(processes=processs)
 
-    for speaker in os.listdir(args.in_dir):
-        spk_dir = os.path.join(args.in_dir, speaker)
-        if os.path.isdir(spk_dir):
-            print(spk_dir)
-            for _ in tqdm(pool.imap_unordered(process, [(spk_dir, i, args) for i in os.listdir(spk_dir) if i.endswith("wav")])):
-                pass
+        for speaker in os.listdir(args.in_dir):
+            spk_dir = os.path.join(args.in_dir, speaker)
+            if os.path.isdir(spk_dir):
+                print(spk_dir)
+                for _ in tqdm(pool.imap_unordered(process, [(spk_dir, i, args) for i in os.listdir(spk_dir) if i.endswith("wav")])):
+                    pass
+    except e:
+        print(e)
