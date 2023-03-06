@@ -1,0 +1,14 @@
+filelists/*
+dataset_raw/
+dataset/
+__pycache__/
+logs/**/*.pth* 
+logs/**/*.json 
+logs/**/*.log
+logs/**/githash
+logs/**/*.tfevents* 
+logs/**/eval 
+raw/
+*.pt*
+*.Identifier
+*.zip
