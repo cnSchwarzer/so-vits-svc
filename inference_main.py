@@ -24,7 +24,7 @@ clean_names = ["66002"]
 trans = [0]  # 音高调整，支持正负（半音）
 spk_list = ['grm']  # 每次同时合成多语者音色
 slice_db = -40  # 默认-40，嘈杂的音频可以-30，干声保留呼吸可以-50
-wav_format = 'flac'  # 音频输出格式
+wav_format = 'wav'  # 音频输出格式
 
 infer_tool.fill_a_to_b(trans, clean_names)
 for clean_name, tran in zip(clean_names, trans):
