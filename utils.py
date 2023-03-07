@@ -183,7 +183,7 @@ def clean_remove(path):
   f = open(path, 'w')
   f.write('')
   f.close()
-  os.remove(x)
+  os.remove(path)
 
 def clean_checkpoints(path_to_models='logs/48k/', n_ckpts_to_keep=2, sort_by_time=True):
   """Freeing up space by deleting saved ckpts
