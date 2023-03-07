@@ -11,9 +11,7 @@ from inference import infer_tool
 from inference import slicer
 from inference.infer_tool import Svc
 
-import sys
-
-print(sys.argv)
+import sys 
 
 logging.getLogger('numba').setLevel(logging.WARNING)
 chunks_dict = infer_tool.read_temp("inference/chunks_temp.json")
