@@ -11,10 +11,14 @@ from inference import infer_tool
 from inference import slicer
 from inference.infer_tool import Svc
 
+import sys
+
+print(sys.argv)
+
 logging.getLogger('numba').setLevel(logging.WARNING)
 chunks_dict = infer_tool.read_temp("inference/chunks_temp.json")
 
-model_path = "logs/48k/G_25000.pth"
+model_path = sys.argv[3]
 config_path = "configs/config.json"
 svc_model = Svc(model_path, config_path)
 infer_tool.mkdir(["raw", "results"])
