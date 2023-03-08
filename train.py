@@ -6,6 +6,7 @@ import argparse
 import itertools
 import math
 import torch
+import time
 from torch import nn, optim
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
@@ -32,6 +33,7 @@ from mel_processing import mel_spectrogram_torch, spec_to_mel_torch
 torch.backends.cudnn.benchmark = True
 global_step = 0
 
+start_time = time.time()
 
 # os.environ['TORCH_DISTRIBUTED_DEBUG'] = 'INFO'
 
@@ -226,7 +228,11 @@ def train_and_evaluate(rank, epoch, hps, nets, optims, schedulers, scaler, loade
         global_step += 1
 
     if rank == 0:
-        logger.info('====> Epoch: {}'.format(epoch))
+        global start_time
+        now = time.time()
+        durtaion = format(now - start_time, '.2f')
+        logger.info(f'====> Epoch: {epoch}, cost {durtaion} s')
+        start_time = now
 
 
 def evaluate(hps, generator, eval_loader, writer_eval):
