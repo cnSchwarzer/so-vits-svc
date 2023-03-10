@@ -25,7 +25,7 @@ infer_tool.mkdir(["raw", "results"])
 clean_names = [sys.argv[2]]
 trans = [0]  # 音高调整，支持正负（半音）
 spk_list = ['grm']  # 每次同时合成多语者音色
-slice_db = -40  # 默认-40，嘈杂的音频可以-30，干声保留呼吸可以-50
+slice_db = -50  # 默认-40，嘈杂的音频可以-30，干声保留呼吸可以-50
 wav_format = 'wav'  # 音频输出格式
 
 infer_tool.fill_a_to_b(trans, clean_names)
